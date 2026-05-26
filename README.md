@@ -54,6 +54,21 @@ pnpm test        # run all tests
 pnpm check       # lint + typecheck + format check (all at once)
 ```
 
+## CI and automatic releases
+
+Releases are handled automatically by [semantic-release](https://semantic-release.gitbook.io) on every push to `main`. A new version is published to npm when there is at least one `feat` or `fix` commit since the last release.
+
+### Required GitHub Actions secrets
+
+Go to **Settings → Secrets and variables → Actions** in your GitHub repository and add:
+
+| Secret | Where to get it |
+| -------------- | --------------- |
+| `NPM_TOKEN` | [npmjs.com](https://www.npmjs.com) → Avatar → **Access Tokens** → **Generate New Token** → type **Automation** |
+| `GITHUB_TOKEN` | Provided automatically by GitHub Actions — no setup needed |
+
+`GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`).
+
 ## Rename and publish
 
 1. Replace `@repo/lib` with your package name in `packages/lib/package.json` and in any app that imports it.
