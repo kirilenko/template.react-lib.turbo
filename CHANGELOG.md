@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/kirilenko/template.react-lib.turbo/compare/v1.0.0...v1.1.0) (2026-05-27)
+
+
+### Bug Fixes
+
+* set private:true and publishConfig in lib package to prevent accidental publish of placeholder ([98b97f5](https://github.com/kirilenko/template.react-lib.turbo/commit/98b97f555c07b02b59d65f7a20e78593d8d9a4d4))
+
+
+### Features
+
+* rename package to template-react-lib-turbo for npm publishing ([5548797](https://github.com/kirilenko/template.react-lib.turbo/commit/55487978f9364354a53da423c394e0b0f910e934))
+
 # 1.0.0 (2026-05-27)
 
 ### Bug Fixes
