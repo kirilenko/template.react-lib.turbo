@@ -72,6 +72,12 @@ Go to **Settings → Secrets and variables → Actions** in your GitHub reposito
 
 `GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`).
 
+### Branch protection bypass
+
+semantic-release pushes a release commit (updated `CHANGELOG.md` + `packages/lib/package.json`) back to `main` after every release. If `main` has branch protection rules or rulesets, you must allow the GitHub Actions bot to bypass them:
+
+**Settings → Rules → edit the `main` rule → Bypass list → Add bypass → `github-actions[bot]`**
+
 ## Rename and publish
 
 1. Replace `@repo/lib` with your package name in `packages/lib/package.json` and in any app that imports it.
