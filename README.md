@@ -72,12 +72,12 @@ Go to **Settings → Secrets and variables → Actions** in your GitHub reposito
 ## Rename and publish
 
 1. Replace `@repo/lib` with your package name in `packages/lib/package.json` and in any app that imports it.
-2. In `packages/lib/package.json`: set `"private": false`, fill in `description`, `keywords`, `repository`, `license`.
-3. Build and publish:
+2. In `packages/lib/package.json`: remove `"private": true`, fill in `description`, `keywords`, `repository`, `license`.
+3. CI will publish automatically on the next push to `main` with a `feat` or `fix` commit. To publish manually:
    ```bash
    pnpm build
    cd packages/lib
-   npm publish --access public
+   npm publish
    ```
 
 ## CSS Modules and SSR
