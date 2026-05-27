@@ -65,18 +65,29 @@ Releases are handled automatically by [semantic-release](https://semantic-releas
 
 Go to **Settings → Secrets and variables → Actions** in your GitHub repository and add:
 
-| Secret         | Where to get it                                                                                                                                                                               |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NPM_TOKEN`    | [npmjs.com](https://www.npmjs.com) → Avatar → **Access Tokens** → **Generate New Token** → **Granular Access Token** → Packages: **Read and Write** → enable **Allow publishing without 2FA** |
-| `GITHUB_TOKEN` | Provided automatically by GitHub Actions — no setup needed                                                                                                                                    |
+| Secret           | Where to get it                                                                                                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NPM_TOKEN`      | [npmjs.com](https://www.npmjs.com) → Avatar → **Access Tokens** → **Generate New Token** → **Granular Access Token** → Packages: **Read and Write** → enable **Allow publishing without 2FA** |
+| `GITHUB_TOKEN`   | Provided automatically by GitHub Actions — no setup needed                                                                                                                                    |
+| `SSH_DEPLOY_KEY` | See below                                                                                                                                                                                     |
 
 `GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`).
 
-### Branch protection bypass
+### SSH deploy key
 
-semantic-release pushes a release commit (updated `CHANGELOG.md` + `packages/lib/package.json`) back to `main` after every release. If `main` has branch protection rules or rulesets, you must allow the GitHub Actions bot to bypass them:
+CI uses SSH for all git push operations (tags, release commits) because GitHub's HTTPS smart-HTTP may reject pushes from `GITHUB_TOKEN` in some repository configurations.
 
-**Settings → Rules → edit the `main` rule → Bypass list → Add bypass → `github-actions[bot]`**
+Generate a key pair locally (no passphrase):
+
+```bash
+ssh-keygen -t ed25519 -C "ci deploy key" -f deploy_key -N ""
+```
+
+Then:
+
+1. **Settings → Deploy keys → Add deploy key** — paste `deploy_key.pub`, enable **Allow write access**
+2. **Settings → Secrets and variables → Actions → New repository secret** — name `SSH_DEPLOY_KEY`, paste the contents of `deploy_key`
+3. Delete both key files locally
 
 ## Rename and publish
 
