@@ -1,5 +1,8 @@
 # template.react-lib.turbo
 
+[![CI](https://github.com/kirilenko/template.react-lib.turbo/actions/workflows/ci.yml/badge.svg)](https://github.com/kirilenko/template.react-lib.turbo/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/template-react-lib-turbo)](https://www.npmjs.com/package/template-react-lib-turbo)
+
 Turborepo + pnpm monorepo template for building and publishing a React component library to npm.
 
 ## What's inside
