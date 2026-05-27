@@ -1,11 +1,20 @@
 {
   "name": "template-react-lib-turbo",
   "version": "1.1.0",
-  "description": "React component library",
+  "description": "Turborepo + pnpm monorepo template for building and publishing a React component library to npm",
   "keywords": [
     "react",
-    "components"
+    "components",
+    "library",
+    "template",
+    "turborepo"
   ],
+  "license": "MIT",
+  "homepage": "https://github.com/kirilenko/template.react-lib.turbo#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirilenko/template.react-lib.turbo.git"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
