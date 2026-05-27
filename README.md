@@ -62,10 +62,10 @@ Releases are handled automatically by [semantic-release](https://semantic-releas
 
 Go to **Settings → Secrets and variables → Actions** in your GitHub repository and add:
 
-| Secret         | Where to get it                                                                                                                    |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `NPM_TOKEN`    | [npmjs.com](https://www.npmjs.com) → Avatar → **Access Tokens** → **Generate New Token** → **Classic Token** → type **Automation** |
-| `GITHUB_TOKEN` | Provided automatically by GitHub Actions — no setup needed                                                                         |
+| Secret         | Where to get it                                                                                                                                                                               |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NPM_TOKEN`    | [npmjs.com](https://www.npmjs.com) → Avatar → **Access Tokens** → **Generate New Token** → **Granular Access Token** → Packages: **Read and Write** → enable **Allow publishing without 2FA** |
+| `GITHUB_TOKEN` | Provided automatically by GitHub Actions — no setup needed                                                                                                                                    |
 
 `GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`).
 
