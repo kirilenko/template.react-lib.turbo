@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/kirilenko/template.react-lib.turbo/compare/v1.1.0...v1.1.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* add license, repository and homepage fields to package.json ([01874ea](https://github.com/kirilenko/template.react-lib.turbo/commit/01874eaea236a9c3e0dd666e0277b1f7a019a913))
+* **ci:** replace @semantic-release/git with native git push step ([bc32e9b](https://github.com/kirilenko/template.react-lib.turbo/commit/bc32e9b2c37b2d03efadc7ed2d5174cb9826be6b))
+* **ci:** use explicit token in git remote url instead of credential helper ([4516634](https://github.com/kirilenko/template.react-lib.turbo/commit/4516634bd13816dd905db7f682a914020e794a95))
+* **ci:** use SSH deploy key for git push to bypass HTTPS push rejection ([c38462e](https://github.com/kirilenko/template.react-lib.turbo/commit/c38462ea45bb3c5a21a22986350ac96086bce9d1))
+
 # [1.1.0](https://github.com/kirilenko/template.react-lib.turbo/compare/v1.0.0...v1.1.0) (2026-05-27)
 
 

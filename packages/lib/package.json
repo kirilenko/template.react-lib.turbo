@@ -1,6 +1,6 @@
 {
   "name": "template-react-lib-turbo",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Turborepo + pnpm monorepo template for building and publishing a React component library to npm",
   "keywords": [
     "react",
