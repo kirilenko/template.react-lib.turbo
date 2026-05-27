@@ -65,3 +65,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: pnpm release
+
+      - name: Commit release files
+        run: |
+          git diff --quiet HEAD -- CHANGELOG.md packages/lib/package.json && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          VERSION=$(node -p "require('./packages/lib/package.json').version")
+          git add CHANGELOG.md packages/lib/package.json
+          git commit -m "chore(release): ${VERSION} [skip ci]"
+          git push
