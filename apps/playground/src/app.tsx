@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '@repo/lib'
+import { Button } from 'template-react-lib-turbo'
 
 export default function App() {
   const [loading, setLoading] = useState(false)

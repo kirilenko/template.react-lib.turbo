@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Button } from '@repo/lib'
+import { Button } from 'template-react-lib-turbo'
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',

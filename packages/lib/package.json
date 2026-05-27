@@ -1,7 +1,6 @@
 {
-  "name": "@repo/lib",
+  "name": "template-react-lib-turbo",
   "version": "1.0.0",
-  "private": true,
   "description": "React component library",
   "keywords": [
     "react",
@@ -21,9 +20,6 @@
         "default": "./dist/index.js"
       }
     }
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "files": [
     "dist"
