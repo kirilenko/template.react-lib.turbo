@@ -15,7 +15,9 @@ updates:
     open-pull-requests-limit: 10
 
   - package-ecosystem: github-actions
-    directory: /
+    directories:
+      - /
+      - /.github/actions/*
     schedule:
       interval: weekly
     commit-message:
@@ -23,4 +25,4 @@ updates:
     groups:
       actions:
         patterns:
-          - "*"
+          - '*'
