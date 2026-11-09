@@ -101,10 +101,7 @@ Then:
 
 [Dependabot](.github/dependabot.yml) opens weekly PRs for npm packages and GitHub Actions; security alerts and security updates are enabled in the repository settings.
 
-`pnpm.overrides` in the root `package.json` force patched versions of vulnerable transitive dependencies:
-
-- `handlebars` — pulled in by semantic-release; drop once its dependents require `>=4.7.10`.
-- `tinypool` — vitest 3 still depends on the vulnerable `^1.x`; drop after upgrading to vitest 5, which no longer uses tinypool.
+`pnpm.overrides` in the root `package.json` forces a patched `handlebars` (pulled in by semantic-release); drop it once its dependents require `>=4.7.10`.
 
 ## Rename and publish
 
