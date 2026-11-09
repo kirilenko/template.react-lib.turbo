@@ -61,17 +61,25 @@ pnpm check       # lint + typecheck + format check (all at once)
 
 Releases are handled automatically by [semantic-release](https://semantic-release.gitbook.io) on every push to `main`. A new version is published to npm when there is at least one `feat` or `fix` commit since the last release.
 
+Pull requests run `check`, `test` and `build` only; the release job runs on `main` after they pass.
+
+### npm trusted publishing
+
+CI publishes to npm via [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC) — no npm token is stored in the repository, and each version gets a provenance attestation.
+
+Trusted publishing is configured per package, so the package must already exist on npm:
+
+1. Publish the first version manually (see [Rename and publish](#rename-and-publish)).
+2. On [npmjs.com](https://www.npmjs.com) open the package → **Settings** → **Trusted Publisher** → **GitHub Actions**, and fill in your GitHub user/org, repository name and workflow filename `ci.yml`.
+
 ### Required GitHub Actions secrets
 
-Go to **Settings → Secrets and variables → Actions** in your GitHub repository and add:
+| Secret           | Where to get it                                            |
+| ---------------- | ---------------------------------------------------------- |
+| `GITHUB_TOKEN`   | Provided automatically by GitHub Actions — no setup needed |
+| `SSH_DEPLOY_KEY` | See below                                                  |
 
-| Secret           | Where to get it                                                                                                                                                                               |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NPM_TOKEN`      | [npmjs.com](https://www.npmjs.com) → Avatar → **Access Tokens** → **Generate New Token** → **Granular Access Token** → Packages: **Read and Write** → enable **Allow publishing without 2FA** |
-| `GITHUB_TOKEN`   | Provided automatically by GitHub Actions — no setup needed                                                                                                                                    |
-| `SSH_DEPLOY_KEY` | See below                                                                                                                                                                                     |
-
-`GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`).
+`GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`, `id-token: write` for npm OIDC).
 
 ### SSH deploy key
 
@@ -102,12 +110,13 @@ Then:
 
 1. Replace `@repo/lib` with your package name in `packages/lib/package.json` and in any app that imports it.
 2. In `packages/lib/package.json`: remove `"private": true`, fill in `description`, `keywords`, `repository`, `license`.
-3. CI will publish automatically on the next push to `main` with a `feat` or `fix` commit. To publish manually:
+3. Publish the first version manually:
    ```bash
    pnpm build
    cd packages/lib
    npm publish
    ```
+4. Set up [trusted publishing](#npm-trusted-publishing) — after that CI publishes automatically on every push to `main` with a `feat` or `fix` commit.
 
 ## CSS Modules and SSR
 
