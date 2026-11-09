@@ -3,28 +3,28 @@ import { fn } from 'storybook/test'
 import { Button } from 'template-react-lib-turbo'
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  args: {
+    children: 'Button',
+    onClick: fn(),
+  },
+  argTypes: {
+    disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'ghost'],
+    },
+  },
   component: Button,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'ghost'],
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-    loading: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-  },
-  args: {
-    onClick: fn(),
-    children: 'Button',
-  },
+  title: 'Components/Button',
 }
 
 export default meta
@@ -51,7 +51,7 @@ export const Large: Story = {
 }
 
 export const Loading: Story = {
-  args: { loading: true, children: 'Loading…' },
+  args: { children: 'Loading…', loading: true },
 }
 
 export const Disabled: Story = {
