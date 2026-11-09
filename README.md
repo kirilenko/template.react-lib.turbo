@@ -89,6 +89,15 @@ Then:
 2. **Settings → Secrets and variables → Actions → New repository secret** — name `SSH_DEPLOY_KEY`, paste the contents of `deploy_key`
 3. Delete both key files locally
 
+## Dependency updates
+
+[Dependabot](.github/dependabot.yml) opens weekly PRs for npm packages and GitHub Actions; security alerts and security updates are enabled in the repository settings.
+
+`pnpm.overrides` in the root `package.json` force patched versions of vulnerable transitive dependencies:
+
+- `handlebars` — pulled in by semantic-release; drop once its dependents require `>=4.7.10`.
+- `tinypool` — vitest 3 still depends on the vulnerable `^1.x`; drop after upgrading to vitest 5, which no longer uses tinypool.
+
 ## Rename and publish
 
 1. Replace `@repo/lib` with your package name in `packages/lib/package.json` and in any app that imports it.
