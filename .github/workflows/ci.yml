@@ -33,9 +33,29 @@ jobs:
       - name: Build
         run: pnpm build
 
+  # The library supports react >=18 but is developed against the latest React
+  react-18:
+    name: Test on React 18
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Install React 18
+        run: pnpm --filter ./packages/lib add -D react@^18 react-dom@^18 @types/react@^18 @types/react-dom@^18
+
+      - name: Typecheck
+        run: pnpm --filter ./packages/lib typecheck
+
+      - name: Test
+        run: pnpm --filter ./packages/lib test
+
   release:
     name: Release
-    needs: check
+    needs: [check, react-18]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
