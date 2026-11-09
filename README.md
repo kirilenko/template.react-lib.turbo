@@ -76,11 +76,13 @@ Trusted publishing is configured per package, so the package must already exist 
 
 No secrets need to be configured: `GITHUB_TOKEN` is injected by GitHub automatically, and the CI workflow requests the permissions it needs (`contents: write`, `issues: write`, `pull-requests: write`, `id-token: write` for npm OIDC).
 
-After each release CI pushes a release commit (`CHANGELOG.md` + `packages/lib/package.json`) and a tag to `main` with `GITHUB_TOKEN`. If you protect `main` with branch protection or rulesets, make sure GitHub Actions is still allowed to push to it.
+After each release CI pushes a release commit (`CHANGELOG.md` + `packages/lib/package.json`) and a tag to `main` with `GITHUB_TOKEN`. That push carries no CI results, so `main` must not require status checks: on a personal repository GitHub Actions cannot be added to a ruleset's bypass list. This repository's ruleset only blocks force-pushes and deletion of `main`.
 
 ## Dependency updates
 
 [Dependabot](.github/dependabot.yml) opens weekly PRs for npm packages and GitHub Actions; security alerts and security updates are enabled in the repository settings.
+
+Patch and minor updates are merged automatically by the `dependabot-auto-merge` CI job once `Check` and `Test on React 18` pass; major updates stay open for manual review.
 
 `pnpm.overrides` in the root `package.json` force patched versions of vulnerable transitive dependencies; drop each one once its dependents require the patched range:
 

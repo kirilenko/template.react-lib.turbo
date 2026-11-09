@@ -55,6 +55,29 @@ jobs:
       - name: Test
         run: pnpm --filter ./packages/lib test
 
+  # Merges only after the checks above pass; major updates stay open for manual review
+  dependabot-auto-merge:
+    name: Dependabot auto-merge
+    needs: [check, react-18]
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge
+        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
+        run: gh pr merge --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   release:
     name: Release
     needs: [check, react-18]
