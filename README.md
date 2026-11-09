@@ -15,18 +15,19 @@ Turborepo + pnpm monorepo template for building and publishing a React component
 
 ## Stack
 
-| Tool                                                                                                                                      | Purpose                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [Turborepo](https://turbo.build)                                                                                                          | Task orchestration and caching                |
-| [pnpm workspaces](https://pnpm.io/workspaces)                                                                                             | Package manager                               |
-| [tsup](https://tsup.egoist.dev)                                                                                                           | Library bundler — CJS, ESM and `.d.ts` output |
-| [Vite](https://vite.dev)                                                                                                                  | Dev server for playground and Storybook       |
-| [Vitest](https://vitest.dev) + [@testing-library/react](https://testing-library.com)                                                      | Unit tests                                    |
-| [Storybook 10](https://storybook.js.org)                                                                                                  | Component docs and visual testing             |
-| CSS + `injectStyle`                                                                                                                       | Styles injected into the JS bundle at runtime |
-| [TypeScript 7](https://www.typescriptlang.org)                                                                                            | Type checking with the native `tsc`           |
-| [ESLint 10](https://eslint.org) with [eslint-config-k8](https://www.npmjs.com/package/eslint-config-k8) + [Prettier](https://prettier.io) | Linting and formatting                        |
-| [commitlint](https://commitlint.js.org) + [husky](https://typicode.github.io/husky)                                                       | Conventional Commits enforcement              |
+| Tool                                                                                                                                      | Purpose                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [Turborepo](https://turbo.build)                                                                                                          | Task orchestration and caching                        |
+| [pnpm workspaces](https://pnpm.io/workspaces)                                                                                             | Package manager                                       |
+| [tsup](https://tsup.egoist.dev)                                                                                                           | Library bundler — CJS, ESM and `.d.ts` output         |
+| [Vite](https://vite.dev)                                                                                                                  | Dev server for playground and Storybook               |
+| [Vitest](https://vitest.dev) + [@testing-library/react](https://testing-library.com)                                                      | Unit tests                                            |
+| [Storybook 10](https://storybook.js.org)                                                                                                  | Component docs and visual testing                     |
+| CSS + `injectStyle`                                                                                                                       | Styles injected into the JS bundle at runtime         |
+| [TypeScript 7](https://www.typescriptlang.org)                                                                                            | Type checking with the native `tsc`                   |
+| [ESLint 10](https://eslint.org) with [eslint-config-k8](https://www.npmjs.com/package/eslint-config-k8) + [Prettier](https://prettier.io) | Linting and formatting                                |
+| [commitlint](https://commitlint.js.org) + [husky](https://typicode.github.io/husky)                                                       | Conventional Commits enforcement                      |
+| [size-limit](https://github.com/ai/size-limit)                                                                                            | Bundle size budget in `packages/lib/.size-limit.json` |
 
 ## Requirements
 
@@ -54,7 +55,7 @@ pnpm dev      # starts playground on :5173 and Storybook on :6006
 pnpm build       # build all packages
 pnpm dev         # watch mode: playground + storybook
 pnpm test        # run all tests
-pnpm check       # lint + typecheck + package exports (publint, attw) + format check
+pnpm check       # lint + typecheck + package exports (publint, attw) + bundle size + format check
 ```
 
 ## CI and automatic releases

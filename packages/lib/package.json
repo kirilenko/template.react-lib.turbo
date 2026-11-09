@@ -41,7 +41,8 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "lint:package": "publint --strict && attw --pack ."
+    "lint:package": "publint --strict && attw --pack .",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
+    "@size-limit/preset-small-lib": "^14.3.0",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
@@ -60,6 +62,7 @@
     "publint": "^0.3.25",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "size-limit": "^14.3.0",
     "tsup": "^9.0.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-native": "npm:typescript@^7.0.2",

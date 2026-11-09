@@ -23,6 +23,9 @@
     },
     "lint:package": {
       "dependsOn": ["build"]
+    },
+    "size": {
+      "dependsOn": ["build"]
     }
   }
 }

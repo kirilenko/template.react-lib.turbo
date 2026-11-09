@@ -7,7 +7,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
-    "check": "turbo run lint typecheck lint:package && prettier --check .",
+    "check": "turbo run lint typecheck lint:package size && prettier --check .",
     "release": "semantic-release",
     "prepare": "husky"
   },
