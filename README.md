@@ -101,7 +101,11 @@ Then:
 
 [Dependabot](.github/dependabot.yml) opens weekly PRs for npm packages and GitHub Actions; security alerts and security updates are enabled in the repository settings.
 
-`pnpm.overrides` in the root `package.json` forces a patched `handlebars` (pulled in by semantic-release); drop it once its dependents require `>=4.7.10`.
+`pnpm.overrides` in the root `package.json` force patched versions of vulnerable transitive dependencies; drop each one once its dependents require the patched range:
+
+- `handlebars` — pulled in by semantic-release.
+- `glob` — pulled in by Storybook's docgen plugin, which still requires `^13`.
+- `minimatch` — pulled in by ESLint and typescript-eslint, which still require `^10`.
 
 ## Rename and publish
 
