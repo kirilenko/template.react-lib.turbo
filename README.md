@@ -54,7 +54,7 @@ pnpm setup       # install correct Node.js and pnpm versions, then install depen
 pnpm build       # build all packages
 pnpm dev         # watch mode: playground + storybook
 pnpm test        # run all tests
-pnpm check       # lint + typecheck + format check (all at once)
+pnpm check       # lint + typecheck + package exports (publint, attw) + format check
 ```
 
 ## CI and automatic releases

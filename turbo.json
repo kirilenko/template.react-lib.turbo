@@ -20,6 +20,9 @@
     },
     "typecheck": {
       "dependsOn": ["^build"]
+    },
+    "lint:package": {
+      "dependsOn": ["build"]
     }
   }
 }
