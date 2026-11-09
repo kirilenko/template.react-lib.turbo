@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "setup": "bash scripts/setup.sh",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
@@ -30,14 +29,17 @@
   },
   "engines": {
     "node": "^22.14.0 || >=24.10.0",
-    "pnpm": ">=9"
+    "pnpm": ">=10"
   },
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@10.34.9",
   "pnpm": {
     "overrides": {
       "handlebars": "^4.7.10",
       "glob": "^14.0.2",
       "minimatch": "^11.0.1"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

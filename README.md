@@ -30,14 +30,14 @@ Turborepo + pnpm monorepo template for building and publishing a React component
 ## Requirements
 
 - [nvm](https://github.com/nvm-sh/nvm)
-- pnpm 9+ (activated automatically via corepack in `setup.sh`)
+- pnpm 10+ (activated automatically via corepack in `setup.sh`)
 
 ## Getting started
 
 Run the setup script once — it installs the correct Node.js and pnpm versions, then installs all dependencies:
 
 ```bash
-pnpm setup
+bash scripts/setup.sh
 ```
 
 After setup:
@@ -50,7 +50,6 @@ pnpm dev      # starts playground on :5173 and Storybook on :6006
 ### All root commands
 
 ```bash
-pnpm setup       # install correct Node.js and pnpm versions, then install dependencies
 pnpm build       # build all packages
 pnpm dev         # watch mode: playground + storybook
 pnpm test        # run all tests
