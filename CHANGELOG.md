@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/kirilenko/template.react-lib.turbo/compare/v1.1.1...v1.1.2) (2026-11-09)
+
+
+### Bug Fixes
+
+* **deps:** patch critical vulnerabilities in storybook, vitest, tinypool, handlebars ([3316606](https://github.com/kirilenko/template.react-lib.turbo/commit/3316606d605ff6cf985cc9a300a6559151773b2f))
+
 ## [1.1.1](https://github.com/kirilenko/template.react-lib.turbo/compare/v1.1.0...v1.1.1) (2026-05-27)
 
 
