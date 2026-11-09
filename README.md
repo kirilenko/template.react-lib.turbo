@@ -71,30 +71,11 @@ Trusted publishing is configured per package, so the package must already exist 
 1. Publish the first version manually (see [Rename and publish](#rename-and-publish)).
 2. On [npmjs.com](https://www.npmjs.com) open the package → **Settings** → **Trusted Publisher** → **GitHub Actions**, and fill in your GitHub user/org, repository name and workflow filename `ci.yml`.
 
-### Required GitHub Actions secrets
+### GitHub Actions permissions
 
-| Secret           | Where to get it                                            |
-| ---------------- | ---------------------------------------------------------- |
-| `GITHUB_TOKEN`   | Provided automatically by GitHub Actions — no setup needed |
-| `SSH_DEPLOY_KEY` | See below                                                  |
+No secrets need to be configured: `GITHUB_TOKEN` is injected by GitHub automatically, and the CI workflow requests the permissions it needs (`contents: write`, `issues: write`, `pull-requests: write`, `id-token: write` for npm OIDC).
 
-`GITHUB_TOKEN` is injected by GitHub automatically; the CI workflow already requests the required permissions (`contents: write`, `issues: write`, `pull-requests: write`, `id-token: write` for npm OIDC).
-
-### SSH deploy key
-
-CI uses SSH for all git push operations (tags, release commits) because GitHub's HTTPS smart-HTTP may reject pushes from `GITHUB_TOKEN` in some repository configurations.
-
-Generate a key pair locally (no passphrase):
-
-```bash
-ssh-keygen -t ed25519 -C "ci deploy key" -f deploy_key -N ""
-```
-
-Then:
-
-1. **Settings → Deploy keys → Add deploy key** — paste `deploy_key.pub`, enable **Allow write access**
-2. **Settings → Secrets and variables → Actions → New repository secret** — name `SSH_DEPLOY_KEY`, paste the contents of `deploy_key`
-3. Delete both key files locally
+After each release CI pushes a release commit (`CHANGELOG.md` + `packages/lib/package.json`) and a tag to `main` with `GITHUB_TOKEN`. If you protect `main` with branch protection or rulesets, make sure GitHub Actions is still allowed to push to it.
 
 ## Dependency updates
 
