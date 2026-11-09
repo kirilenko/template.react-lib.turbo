@@ -45,7 +45,9 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Install React 18
-        run: pnpm --filter ./packages/lib add -D react@^18 react-dom@^18 @types/react@^18 @types/react-dom@^18
+        run: |
+          pnpm --filter ./packages/lib add -D react@^18 react-dom@^18 @types/react@^18 @types/react-dom@^18
+          cd packages/lib && node -e 'const v = require("react/package.json").version; console.log(`react ${v}`); if (!v.startsWith("18.")) process.exit(1)'
 
       - name: Typecheck
         run: pnpm --filter ./packages/lib typecheck
