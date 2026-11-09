@@ -11,7 +11,7 @@ Turborepo + pnpm monorepo template for building and publishing a React component
 | ----------------- | --------------------------------------------------- |
 | `packages/lib`    | React component library, built with tsup            |
 | `apps/playground` | Vite app for developing and testing components live |
-| `apps/storybook`  | Storybook 8 for component docs and visual testing   |
+| `apps/storybook`  | Storybook 10 for component docs and visual testing  |
 
 ## Stack
 
@@ -22,7 +22,7 @@ Turborepo + pnpm monorepo template for building and publishing a React component
 | [tsup](https://tsup.egoist.dev)                                                      | Library bundler — CJS, ESM and `.d.ts` output |
 | [Vite](https://vite.dev)                                                             | Dev server for playground and Storybook       |
 | [Vitest](https://vitest.dev) + [@testing-library/react](https://testing-library.com) | Unit tests                                    |
-| [Storybook 8](https://storybook.js.org)                                              | Component docs and visual testing             |
+| [Storybook 10](https://storybook.js.org)                                             | Component docs and visual testing             |
 | CSS + `injectStyle`                                                                  | Styles injected into the JS bundle at runtime |
 | [ESLint 9](https://eslint.org) + [Prettier](https://prettier.io)                     | Linting and formatting                        |
 | [commitlint](https://commitlint.js.org) + [husky](https://typicode.github.io/husky)  | Conventional Commits enforcement              |
