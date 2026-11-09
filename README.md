@@ -24,7 +24,8 @@ Turborepo + pnpm monorepo template for building and publishing a React component
 | [Vitest](https://vitest.dev) + [@testing-library/react](https://testing-library.com) | Unit tests                                    |
 | [Storybook 10](https://storybook.js.org)                                             | Component docs and visual testing             |
 | CSS + `injectStyle`                                                                  | Styles injected into the JS bundle at runtime |
-| [ESLint 9](https://eslint.org) + [Prettier](https://prettier.io)                     | Linting and formatting                        |
+| [TypeScript 7](https://www.typescriptlang.org)                                       | Type checking with the native `tsc`           |
+| [ESLint 10](https://eslint.org) + [Prettier](https://prettier.io)                    | Linting and formatting                        |
 | [commitlint](https://commitlint.js.org) + [husky](https://typicode.github.io/husky)  | Conventional Commits enforcement              |
 
 ## Requirements
@@ -86,6 +87,15 @@ After each release CI pushes a release commit (`CHANGELOG.md` + `packages/lib/pa
 - `handlebars` — pulled in by semantic-release.
 - `glob` — pulled in by Storybook's docgen plugin, which still requires `^13`.
 - `minimatch` — pulled in by ESLint and typescript-eslint, which still require `^10`.
+
+### TypeScript 6 and 7 side by side
+
+TypeScript 7 (the native Go compiler) has no JavaScript API yet, but typescript-eslint, tsup's `.d.ts` build and Storybook's docgen import `typescript` as a library. So each package declares two aliases:
+
+- `typescript` → `@typescript/typescript6` — the TypeScript 6 API for those tools (its CLI is `tsc6`).
+- `typescript-native` → `typescript@7` — provides the `tsc` binary used by `typecheck` and the playground build.
+
+Once the tools support TypeScript 7, replace both with a single `typescript@^7`.
 
 ## Rename and publish
 
